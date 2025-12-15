@@ -2,7 +2,6 @@ import { db } from "@/drizzle/db"
 import { JobInfoTable } from "@/drizzle/schema"
 import { getJobInfoIdTag } from "@/features/jobInfos/dbCache"
 import { canRunResumeAnalysis } from "@/features/resumeAnalyses/permissions"
-import { PLAN_LIMIT_MESSAGE } from "@/lib/errorToast"
 import { analyzeResumeForJob } from "@/services/ai/resumes/ai"
 import { getCurrentUser } from "@/services/clerk/lib/getCurrentUser"
 import { and, eq } from "drizzle-orm"
@@ -47,9 +46,7 @@ export async function POST(req: Request) {
     })
   }
 
-  if (!(await canRunResumeAnalysis())) {
-    return new Response(PLAN_LIMIT_MESSAGE, { status: 403 })
-  }
+  // Removed plan limit check
 
   const res = await analyzeResumeForJob({
     resumeFile,

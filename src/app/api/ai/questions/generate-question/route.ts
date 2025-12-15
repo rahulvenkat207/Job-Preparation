@@ -8,7 +8,6 @@ import { getJobInfoIdTag } from "@/features/jobInfos/dbCache"
 import { insertQuestion } from "@/features/questions/db"
 import { getQuestionJobInfoTag } from "@/features/questions/dbCache"
 import { canCreateQuestion } from "@/features/questions/permissions"
-import { PLAN_LIMIT_MESSAGE } from "@/lib/errorToast"
 import { generateAiQuestion } from "@/services/ai/questions"
 import { getCurrentUser } from "@/services/clerk/lib/getCurrentUser"
 import { createDataStreamResponse } from "ai"
@@ -36,9 +35,7 @@ export async function POST(req: Request) {
     return new Response("You are not logged in", { status: 401 })
   }
 
-  if (!(await canCreateQuestion())) {
-    return new Response(PLAN_LIMIT_MESSAGE, { status: 403 })
-  }
+  // Removed plan limit check
 
   const jobInfo = await getJobInfo(jobInfoId, userId)
   if (jobInfo == null) {
