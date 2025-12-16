@@ -34,3 +34,14 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Deploy on Railway
+
+This application is configured for deployment on Railway. See [RAILWAY_DEPLOYMENT.md](./RAILWAY_DEPLOYMENT.md) for detailed deployment instructions.
+
+Quick steps:
+1. Create a Railway project and connect your GitHub repository
+2. Add a PostgreSQL database service
+3. Configure all required environment variables (see RAILWAY_DEPLOYMENT.md)
+4. Run database migrations: `railway run npm run db:push`
+5. Deploy!
